@@ -1,0 +1,11 @@
+<div class="colors-container">
+  <app-color-picker-cell
+    [color]="colorPickerService.getCurrentColor()"
+    style="margin-right: 20px"
+  ></app-color-picker-cell>
+
+  <app-color-picker-cell
+    *ngFor="let c of colors | keyvalue"
+    [color]="c.value"
+  ></app-color-picker-cell>
+</div>

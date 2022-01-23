@@ -1,1 +1,10 @@
-<app-grid></app-grid>
+<ng-container *ngIf="filename">
+  <app-grid
+    [gridData]="file$ | async"
+    [gridWidth]="gridWidth"
+    [gridHeight]="gridHeight"
+  ></app-grid>
+</ng-container>
+<ng-container *ngIf="!filename">
+  <app-grid [gridWidth]="gridWidth" [gridHeight]="gridHeight"></app-grid>
+</ng-container>

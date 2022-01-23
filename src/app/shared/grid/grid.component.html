@@ -1,12 +1,24 @@
-<input type="number" [(ngModel)]="sizeX" [min]="1" [max]="26" />
-<input type="number" [(ngModel)]="sizeY" [min]="1" [max]="26" />
-<button (click)="increment(-1)">-</button>
-<button (click)="increment(1)">+</button>
+<div *ngIf="panelVisible" style="margin-bottom: 1rem">
+  <input type="number" [(ngModel)]="gridWidth" [min]="1" [max]="26" />
+  <input type="number" [(ngModel)]="gridHeight" [min]="1" [max]="26" />
+  <button (click)="increment(-1)">-</button>
+  <button (click)="increment(1)">+</button>
+  <button (click)="clearGrid()">{{ "settings.clear" | translate }}</button>
+  <br /><br />
+  <app-color-picker></app-color-picker>
+</div>
+<button (click)="togglePanel()">
+  {{
+    panelVisible
+      ? ("settings.hide_panel" | translate)
+      : ("settings.show_panel" | translate)
+  }}
+</button>
 <br /><br />
 
-<table>
-  <tr *ngFor="let w of [].constructor(sizeY + 1); let i = index">
-    <td *ngFor="let h of [].constructor(sizeX + 1); let j = index">
+<table (mouseleave)="mouseleave()">
+  <tr *ngFor="let w of [].constructor(gridHeight + 1); let i = index">
+    <td *ngFor="let h of [].constructor(gridWidth + 1); let j = index">
       <ng-container *ngIf="i === 0 && j === 0"></ng-container>
       <ng-container *ngIf="i === 0 && j !== 0">
         <strong>{{ alphabet[j - 1] }}</strong>
@@ -14,15 +26,17 @@
       <ng-container *ngIf="i !== 0 && j === 0">
         <strong>{{ i }}</strong>
       </ng-container>
-      <ng-container *ngIf="i !== 0 && j !== 0"
-        ><app-grid-cell
-          [width]="60 - sizeX"
-          [height]="60 - sizeX"
-        ></app-grid-cell
-      ></ng-container>
+      <ng-container *ngIf="i !== 0 && j !== 0">
+        <app-grid-cell
+          [width]="cellSize - gridWidth"
+          [height]="cellSize - gridWidth"
+          [gridCell]="gridData[(i - 1) * gridWidth + (j - 1)]"
+          (colored)="cellColored($event)"
+        >
+        </app-grid-cell>
+      </ng-container>
     </td>
   </tr>
 </table>
 
-<br />
-<app-grid-legend></app-grid-legend>
+<app-grid-legend [gridData]="gridData"></app-grid-legend>

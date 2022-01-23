@@ -1,1 +1,19 @@
-<p>grid-legend works!</p>
+<p style="font-weight: bold">{{ "legend" | translate }}</p>
+<div *ngFor="let color of uniqueColorsCells | keyvalue">
+  <div
+    *ngIf="color.key !== colorsEnum.None && color.key !== 'undefined'"
+    style="margin-bottom: 1rem"
+  >
+    <div style="display: flex; align-items: center; margin-bottom: 0.25rem">
+      <app-color-picker-cell [width]="20" [height]="20"></app-color-picker-cell>
+      <div style="margin-left: 0.5rem">
+        {{ "color." + color.key | translate | uppercase }}
+      </div>
+    </div>
+    <div>
+      <span *ngFor="let el of color.value" style="margin-right: 0.25rem">
+        {{ alphabet[el.column - 1] }}{{ el.row }}
+      </span>
+    </div>
+  </div>
+</div>

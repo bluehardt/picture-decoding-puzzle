@@ -1,0 +1,22 @@
+{
+  "legend": "Odgadnij co kryje zagadkowy obrazek, pokoloruj siatkę według kodu:",
+  "color": {
+    "gray": "szary",
+    "pink": "różowy",
+    "red": "czerowny",
+    "orange": "pomarańczowy",
+    "yellow": "żółty",
+    "lightgreen": "jasny zielony",
+    "green": "zielony",
+    "lightblue": "jasny niebieski",
+    "blue": "niebieski",
+    "purple": "fioletowy",
+    "brown": "brązowy",
+    "black": "czarny"
+  },
+  "settings": {
+    "clear": "wyczyść",
+    "show_panel": "pokaż panel",
+    "hide_panel": "ukryj panel"
+  }
+}

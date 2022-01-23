@@ -2,4 +2,9 @@
   class="grid-cell-container"
   [style.width.px]="width"
   [style.height.px]="height"
+  [style.background-color]="gridCell.color"
+  (mousemove)="mousemove()"
+  (mousedown)="mousedown()"
+  (mouseup)="mouseup()"
 ></div>
+<!-- (click)="colorCell()" -->

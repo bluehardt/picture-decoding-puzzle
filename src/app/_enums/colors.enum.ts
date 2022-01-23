@@ -1,0 +1,15 @@
+export enum ColorsEnum {
+  None = 'white',
+  Gray = 'gray',
+  Pink = 'pink',
+  Red = 'red',
+  Orange = 'orange',
+  Yellow = 'yellow',
+  LightGreen = 'lightgreen',
+  Green = 'green',
+  LightBlue = 'lightblue',
+  Blue = 'blue',
+  Purple = 'purple',
+  Brown = 'brown',
+  Black = 'black',
+}

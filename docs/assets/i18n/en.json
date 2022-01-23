@@ -1,0 +1,22 @@
+{
+  "legend": "Reveal the mysterious image, color the grid using the code:",
+  "color": {
+    "gray": "gray",
+    "pink": "pink",
+    "red": "red",
+    "orange": "orange",
+    "yellow": "yellow",
+    "lightgreen": "light green",
+    "green": "green",
+    "lightblue": "light blue",
+    "blue": "blue",
+    "purple": "purple",
+    "brown": "brown",
+    "black": "black"
+  },
+  "settings": {
+    "clear": "clear",
+    "show_panel": "show panel",
+    "hide_panel": "hide panel"
+  }
+}
