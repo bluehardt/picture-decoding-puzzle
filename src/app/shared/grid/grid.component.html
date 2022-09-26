@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between mb-5">
+<div class="d-flex justify-content-between mb-3">
   <div class="d-flex flex-column rg-3 mb-3">
     <div class="d-flex align-items-center cg-2">
       <input type="number" [(ngModel)]="gridWidth" [min]="1" [max]="26" />
@@ -27,11 +27,6 @@
       <input type="text" [(ngModel)]="filename" />
       <button (click)="saveAsFile()">
         {{ "settings.save_file" | translate }}
-      </button>
-    </div>
-    <div>
-      <button (click)="copyToClipboard()">
-        {{ "settings.copy" | translate }}
       </button>
     </div>
     <div>
