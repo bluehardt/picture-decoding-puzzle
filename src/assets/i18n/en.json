@@ -19,6 +19,7 @@
     "show_panel": "show panel",
     "hide_panel": "hide panel",
     "print": "print",
-    "copy": "copy"
+    "copy": "copy",
+    "save_file": "save as file"
   }
 }

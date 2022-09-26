@@ -20,9 +20,9 @@ export class GridComponent implements OnInit {
   alphabet = alphabet;
   cellSize = 40;
 
-  panelVisible = true;
-
   grid: any[][];
+
+  filename = ''; // filename for saving
 
   constructor(public colorPickerService: ColorPickerService) {}
 
@@ -58,11 +58,6 @@ export class GridComponent implements OnInit {
     this.colorPickerService.setMouseDown(false);
   }
 
-  togglePanel() {
-    this.panelVisible = !this.panelVisible;
-    console.log(this.gridData);
-  }
-
   // TODO: temporary
   increment(value: number) {
     const x = this.gridWidth + value;
@@ -87,5 +82,38 @@ export class GridComponent implements OnInit {
 
   copyToClipboard() {
     navigator.clipboard.writeText(JSON.stringify(this.gridData, undefined, 2));
+  }
+
+  saveAsFile() {
+    const originalData = {
+      members: [
+        {
+          name: 'cliff',
+          age: '34',
+        },
+        {
+          name: 'ted',
+          age: '42',
+        },
+        {
+          name: 'bob',
+          age: '12',
+        },
+      ],
+    };
+
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(
+      new Blob([JSON.stringify(this.gridData, null, 2)], {
+        type: 'application/json',
+      })
+    );
+    a.setAttribute(
+      'download',
+      `${this.gridWidth}_${this.gridHeight}_${this.filename}.json`
+    );
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 }
