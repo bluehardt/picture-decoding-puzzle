@@ -17,6 +17,8 @@
   "settings": {
     "clear": "clear",
     "show_panel": "show panel",
-    "hide_panel": "hide panel"
+    "hide_panel": "hide panel",
+    "print": "print",
+    "copy": "copy"
   }
 }

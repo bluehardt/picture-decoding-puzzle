@@ -22,6 +22,8 @@ export class GridComponent implements OnInit {
 
   panelVisible = true;
 
+  grid: any[][];
+
   constructor(public colorPickerService: ColorPickerService) {}
 
   ngOnInit(): void {
@@ -81,5 +83,9 @@ export class GridComponent implements OnInit {
     } else {
       this.gridHeight = y;
     }
+  }
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(JSON.stringify(this.gridData, undefined, 2));
   }
 }

@@ -19,7 +19,7 @@ export class TestComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    // this.filename = ImagesEnum.Mario;
+    this.filename = ImagesEnum.KarateKid;
 
     if (this.filename) {
       const filenameSplit = this.filename.split('_');

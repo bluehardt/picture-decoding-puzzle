@@ -1,42 +1,68 @@
-<div *ngIf="panelVisible" style="margin-bottom: 1rem">
-  <input type="number" [(ngModel)]="gridWidth" [min]="1" [max]="26" />
-  <input type="number" [(ngModel)]="gridHeight" [min]="1" [max]="26" />
-  <button (click)="increment(-1)">-</button>
-  <button (click)="increment(1)">+</button>
-  <button (click)="clearGrid()">{{ "settings.clear" | translate }}</button>
-  <br /><br />
+<div class="d-flex justify-content-between mb-5">
+  <div class="d-flex flex-column rg-3 mb-3">
+    <div class="d-flex align-items-center cg-2">
+      <input type="number" [(ngModel)]="gridWidth" [min]="1" [max]="26" />
+      <input type="number" [(ngModel)]="gridHeight" [min]="1" [max]="26" />
+    </div>
+    <!-- <button (click)="increment(-1)">-</button>
+    <button (click)="increment(1)">+</button> -->
+    <div class="d-flex align-items-center cg-2">
+      <label for="">grid size</label>
+      <input type="number" [(ngModel)]="cellSize" />
+    </div>
+    <div class="d-flex align-items-center cg-3">
+      <button (click)="clearGrid()">{{ "settings.clear" | translate }}</button>
+    </div>
+  </div>
+  <div>
+    <select name="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+  </div>
+  <div class="d-flex cg-3">
+    <div>
+      <button (click)="copyToClipboard()">
+        {{ "settings.copy" | translate }}
+      </button>
+    </div>
+    <div>
+      <button ngxPrint printSectionId="printable" [useExistingCss]="true">
+        {{ "settings.print" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="mb-5">
   <app-color-picker></app-color-picker>
 </div>
-<button (click)="togglePanel()">
-  {{
-    panelVisible
-      ? ("settings.hide_panel" | translate)
-      : ("settings.show_panel" | translate)
-  }}
-</button>
-<br /><br />
 
-<table (mouseleave)="mouseleave()">
-  <tr *ngFor="let w of [].constructor(gridHeight + 1); let i = index">
-    <td *ngFor="let h of [].constructor(gridWidth + 1); let j = index">
-      <ng-container *ngIf="i === 0 && j === 0"></ng-container>
-      <ng-container *ngIf="i === 0 && j !== 0">
-        <strong>{{ alphabet[j - 1] }}</strong>
-      </ng-container>
-      <ng-container *ngIf="i !== 0 && j === 0">
-        <strong>{{ i }}</strong>
-      </ng-container>
-      <ng-container *ngIf="i !== 0 && j !== 0">
-        <app-grid-cell
-          [width]="cellSize - gridWidth"
-          [height]="cellSize - gridWidth"
-          [gridCell]="gridData[(i - 1) * gridWidth + (j - 1)]"
-          (colored)="cellColored($event)"
-        >
-        </app-grid-cell>
-      </ng-container>
-    </td>
-  </tr>
-</table>
+<div id="printable">
+  <table (mouseleave)="mouseleave()">
+    <tr *ngFor="let w of [].constructor(gridHeight + 1); let i = index">
+      <td *ngFor="let h of [].constructor(gridWidth + 1); let j = index">
+        <ng-container *ngIf="i === 0 && j === 0"></ng-container>
+        <ng-container *ngIf="i === 0 && j !== 0">
+          <strong>{{ alphabet[j - 1] }}</strong>
+        </ng-container>
+        <ng-container *ngIf="i !== 0 && j === 0">
+          <strong>{{ i }}</strong>
+        </ng-container>
+        <ng-container *ngIf="i !== 0 && j !== 0">
+          <app-grid-cell
+            [width]="cellSize - gridWidth"
+            [height]="cellSize - gridWidth"
+            [gridCell]="gridData[(i - 1) * gridWidth + (j - 1)]"
+            (colored)="cellColored($event)"
+          >
+          </app-grid-cell>
+        </ng-container>
+      </td>
+    </tr>
+  </table>
 
-<app-grid-legend [gridData]="gridData"></app-grid-legend>
+  <app-grid-legend [gridData]="gridData"></app-grid-legend>
+</div>

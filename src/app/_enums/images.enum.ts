@@ -9,4 +9,11 @@ export enum ImagesEnum {
   TextTosia = '20_5_tosia',
   Mushrooms = '20_10_mushrooms',
   Giraffe = '20_20_giraffe',
+  Goldfish = '14_11_goldfish',
+  Cactus = '16_16_cactus',
+  Penguin = '16_16_penguin',
+  Granny = '16_16_granny',
+  Bee = '16_16_bee',
+  Apple = '16_16_apple',
+  KarateKid = '16_16_karate-kid',
 }
