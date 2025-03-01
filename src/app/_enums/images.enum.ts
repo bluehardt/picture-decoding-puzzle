@@ -16,4 +16,8 @@ export enum ImagesEnum {
   Bee = '16_16_bee',
   Apple = '16_16_apple',
   KarateKid = '16_16_karate-kid',
+  Pokeball = '16_16_pokeball',
+  BlueBird = '16_16_blue-bird',
+  MarioBobOmb = '16_16_bob-omb',
+  MarioFireFlower = '16_16_mario-fire-flower',
 }
