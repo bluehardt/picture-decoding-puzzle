@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './_services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'pictureDecodingPuzzle';
 
-  constructor(translate: TranslateService) {
+  constructor(translate: TranslateService, authService: AuthService) {
     translate.setDefaultLang('en');
     translate.use('en');
+
+    authService.init();
   }
 }

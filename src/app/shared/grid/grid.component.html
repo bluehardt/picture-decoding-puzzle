@@ -28,6 +28,7 @@
       <button (click)="saveAsFile()">
         {{ "settings.save_file" | translate }}
       </button>
+      <button (click)="saveToDb()">save to db</button>
     </div>
     <div>
       <button ngxPrint printSectionId="printable" [useExistingCss]="true">

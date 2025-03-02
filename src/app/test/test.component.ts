@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { delay, map, mergeMap, retryWhen, tap } from 'rxjs/operators';
 import { ImagesEnum } from '../_enums';
+import { DbService } from '../_services/db.service';
 
 @Component({
   selector: 'app-test',
@@ -13,13 +14,29 @@ export class TestComponent implements OnInit {
   filename: string = null;
 
   file$;
-  gridWidth = 16;
+  gridWidth = 24;
   gridHeight = 16;
 
-  constructor(private http: HttpClient) {}
+  db$ = this.db.getPuzzles().pipe(
+    retryWhen((errors) =>
+      errors.pipe(
+        delay(5000),
+        mergeMap((error) => {
+          let counter = 5;
+          return counter-- > 0 ? of(error) : throwError(':/');
+        })
+      )
+    ),
+    map((res) => {
+      res.data.puzzles.sort((a, b) => a.label.localeCompare(b.label));
+      return res;
+    })
+  );
+
+  constructor(private http: HttpClient, public db: DbService) {}
 
   ngOnInit(): void {
-    this.filename = ImagesEnum.KarateKid;
+    // this.filename = ImagesEnum.Backpack;
 
     if (this.filename) {
       const filenameSplit = this.filename.split('_');

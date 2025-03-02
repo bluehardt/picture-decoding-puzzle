@@ -8,3 +8,11 @@
 <ng-container *ngIf="!filename">
   <app-grid [gridWidth]="gridWidth" [gridHeight]="gridHeight"></app-grid>
 </ng-container>
+
+<ng-container *ngIf="db$ | async as db">
+  <select name="" id="">
+    <option *ngFor="let puzzle of db.data.puzzles" [value]="puzzle">
+      {{ puzzle.label }}
+    </option>
+  </select>
+</ng-container>

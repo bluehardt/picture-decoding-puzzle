@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ColorsEnum } from 'src/app/_enums';
 import { GridCellModel } from 'src/app/_models';
 import { ColorPickerService } from 'src/app/_services/color-picker.service';
+import { DbService, PuzzleModel } from 'src/app/_services/db.service';
 
 // characters for the header row
 export const alphabet = String.fromCharCode(...Array(123).keys())
@@ -24,7 +25,10 @@ export class GridComponent implements OnInit {
 
   filename = ''; // filename for saving
 
-  constructor(public colorPickerService: ColorPickerService) {}
+  constructor(
+    public colorPickerService: ColorPickerService,
+    private dbService: DbService
+  ) {}
 
   ngOnInit(): void {
     if (!this.gridData.length) {
@@ -85,23 +89,6 @@ export class GridComponent implements OnInit {
   }
 
   saveAsFile() {
-    const originalData = {
-      members: [
-        {
-          name: 'cliff',
-          age: '34',
-        },
-        {
-          name: 'ted',
-          age: '42',
-        },
-        {
-          name: 'bob',
-          age: '12',
-        },
-      ],
-    };
-
     const a = document.createElement('a');
     a.href = URL.createObjectURL(
       new Blob([JSON.stringify(this.gridData, null, 2)], {
@@ -115,5 +102,20 @@ export class GridComponent implements OnInit {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+  }
+
+  saveToDb() {
+    const hello: PuzzleModel = {
+      label: this.filename,
+      width: this.gridWidth.toString(),
+      height: this.gridHeight.toString(),
+      content: JSON.stringify(this.gridData, null, 2),
+    };
+
+    console.log('hello', hello);
+
+    this.dbService.postPuzzle(hello).subscribe((res) => {
+      console.log('saveToDb', res);
+    });
   }
 }
