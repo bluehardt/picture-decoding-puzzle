@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pictureDecodingPuzzle:build"
+            "buildTarget": "pictureDecodingPuzzle:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pictureDecodingPuzzle:build:production"
+              "buildTarget": "pictureDecodingPuzzle:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pictureDecodingPuzzle:build"
+            "buildTarget": "pictureDecodingPuzzle:build"
           }
         },
         "test": {
